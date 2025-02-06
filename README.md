@@ -1,0 +1,1 @@
+Como marcar checkbox con variable registrada con php

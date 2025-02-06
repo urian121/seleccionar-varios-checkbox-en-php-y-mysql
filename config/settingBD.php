@@ -9,7 +9,7 @@ if ($ModoProduccion) {
     $host = "localhost";
     $usuario = "root";
     $contrasena = "";
-    $base_de_datos = "bd_web_developer";
+    $base_de_datos = "bd_devs";
 }
 
 $conexion = new mysqli($host, $usuario, $contrasena, $base_de_datos);
