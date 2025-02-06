@@ -1,0 +1,5 @@
+.dev-item.active {
+    background-color: #d1e7fd; 
+    color: #333;
+    border: 1px solid #ccc;
+}
