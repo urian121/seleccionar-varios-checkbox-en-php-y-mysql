@@ -4,15 +4,13 @@ require_once("functions/functions.php");
 
 $ACTION = $_POST['action'] ?? null;
 $id_dev = $_POST['id_dev'] ?? null;
+$id_habilidad = $_POST['id_habilidad'] ?? null;
 $habilidades = json_decode($_POST['id_habilidad'] ?? '[]', true);
 $response = [];
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($ACTION)) {
     if ($ACTION === 'agregar_habilidad') {
-
-        $id_habilidad = $_POST['id_habilidad'] ?? null;
-
         if ($id_dev && $id_habilidad) {
             $query = "SELECT * FROM tbl_habilidades_dev WHERE id_dev='$id_dev' AND id_habilidad='$id_habilidad'";
             $result = $conexion->query($query);
@@ -24,6 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($ACTION)) {
                 $insertResult = $conexion->query("INSERT INTO tbl_habilidades_dev (id_dev, id_habilidad) VALUES ('$id_dev', '$id_habilidad')");
                 $response['mensaje'] = $insertResult ? "Habilidad asignada" : "Error al asignar la habilidad: " . $conexion->error;
             }
+
+            // Llamar a la función para obtener el total actualizado de habilidades
+            $totalHabilidades = obtenerTotalHabilidades($conexion, $id_dev);
+
+            $response['total_habilidades'] = $totalHabilidades;
         } else {
             $response['error'] = "Faltan datos (id_dev o id_habilidad).";
         }
@@ -47,10 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($ACTION)) {
             $conexion->query($query);
         }
 
-        echo json_encode([
-            'mensaje' => empty($habilidades) ? 'Todas las habilidades eliminadas' : 'Habilidades actualizadas correctamente',
-            'habilidades' => $habilidades
-        ]);
+        // Llamar a la función para obtener el total actualizado de habilidades
+        $totalHabilidades = obtenerTotalHabilidades($conexion, $id_dev);
+
+        // Respuesta en JSON con el total actualizado
+        $response['mensaje'] = 'Habilidades actualizadas correctamente';
+        $response['total_habilidades'] = $totalHabilidades;
     }
 } else {
     $response['error'] = "Método no permitido o falta de acción.";

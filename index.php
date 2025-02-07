@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Procesar múltiple CheckBox seleccionados con PHP y MySQL</title>
+    <link rel="shortcut icon" href="https://www.urianviera.com/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/css/home.css">
 </head>
 
@@ -35,7 +37,7 @@
                                         value="<?= $dev['id_dev'] ?>" style="cursor: pointer;">
                                     &nbsp; <?= $dev["name"]; ?>
                                 </span>
-                                <span class="badge bg-primary"><?= $dev["habilidades"]; ?> habilidades</span>
+                                <span class="badge bg-primary" id="total_habilidades_<?php echo $dev['id_dev']; ?>"><?= $dev["habilidades"]; ?> habilidades</span>
                             </label>
                         </li>
                     <?php endforeach; ?>
@@ -43,7 +45,15 @@
             </div>
 
             <div class="col-md-6 px-2">
-                <h4 class="text-center fw-bold mb-4 mt-5 mb-5">Habilidades <span class="float-end"><button class="btn btn-primary btn-sm" id="seleccionarTodos" type="button" disabled onclick="seleccionarTodos()">Seleccionar Todos</button></span></h4>
+                <h4 class="text-center fw-bold mb-4 mt-5 mb-5">Habilidades
+                    <span class="float-end">
+                        <button class="btn btn-primary btn-sm" id="seleccionarTodos" type="button" disabled onclick="seleccionarTodos()">
+                            <i class="bi bi-check2-square"></i>
+                            Seleccionar Todos
+                        </button>
+                        <a href="./" class="btn btn-primary btn-sm"><i class="bi bi-arrow-clockwise"></i></a>
+                    </span>
+                </h4>
                 <div class="form-group">
                     <div style="column-count: 3;" id="div_respuesta">
                         <?php foreach ($listKills as $skill): ?>

@@ -34,7 +34,9 @@ function getSkills($conexion)
 }
 
 
-
+/**
+ * Función para obtener las habilidades de un desarrollador
+ */
 function getHabilidadesDev($conexion, $id_dev)
 {
     $sql = "SELECT h.id_habilidad, h.skill 
@@ -51,4 +53,14 @@ function getHabilidadesDev($conexion, $id_dev)
     }
     return $resultado->fetch_all(MYSQLI_ASSOC);  // Esto devolverá los resultados como un array asociativo
 
+}
+
+/**
+ * Función para obtener el total de habilidades de un desarrollador
+ */
+function obtenerTotalHabilidades($conexion, $id_dev)
+{
+    $countQuery = "SELECT COUNT(*) as total FROM tbl_habilidades_dev WHERE id_dev='$id_dev'";
+    $countResult = $conexion->query($countQuery);
+    return $countResult->fetch_assoc()['total'] ?? 0;
 }

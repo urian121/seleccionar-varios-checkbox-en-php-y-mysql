@@ -39,3 +39,26 @@ input[type="checkbox"] {
     margin-right: 10px;
     cursor: pointer;
 }
+.border-bottom{
+border-bottom: 1px dashed #6e57c1 !important;
+  padding: 10px 0px;   
+}
+.btn{
+    background-color: #6e57c1 !important;
+    border-color: #6e57c1 !important;
+}
+.bg-primary{
+    background-color: #6e57c1 !important;
+}
+input[type="checkbox"]:checked, input[type="radio"]:checked {   
+    accent-color: #26ac26  !important; /* Cambia el color del checkbox deseleccionado */
+}
+label {
+    cursor: pointer;
+}
+label:hover {
+    opacity: 0.7;
+}
+input[type="checkbox"] {
+    cursor: pointer;
+}

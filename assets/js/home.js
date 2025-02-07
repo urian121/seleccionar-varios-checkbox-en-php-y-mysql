@@ -40,6 +40,11 @@ function limpiarCheckboxesAndRadios() {
     input.checked = false; // Deselecciona todos los checkboxes y radios
   });
 
+  let checkboxes = document.querySelectorAll("input[type='checkbox']");
+  checkboxes.forEach((checkbox) => {
+    checkbox.disabled = true; // Deshabilita todos los checkboxes
+  });
+
   document.querySelector("#seleccionarTodos").disabled = true;
   console.log("Todos los checkboxes y radios han sido deseleccionados.");
 }
@@ -85,6 +90,7 @@ function seleccionarTodos() {
     .then((response) => response.json())
     .then((data) => {
       console.log("Respuesta del servidor:", data);
+      actualizarTotalHabilidades(id_dev_seleccionado, data.total_habilidades);
     })
     .catch((error) => {
       console.error("Error en la solicitud:", error);
@@ -126,9 +132,10 @@ function getHabilidadesDev(idDev) {
                 id_dev: idDev,
               }),
             })
-              .then((response) => response.text())
+              .then((response) => response.json())
               .then((data) => {
                 console.log(data);
+                actualizarTotalHabilidades(idDev, data.total_habilidades);
               })
               .catch((error) => {
                 console.error("Error al enviar la solicitud:", error);
@@ -142,3 +149,8 @@ function getHabilidadesDev(idDev) {
   }
 }
 
+function actualizarTotalHabilidades(idDev, totalHabilidades) {
+  document.querySelector(
+    `#total_habilidades_${idDev}`
+  ).textContent = `${totalHabilidades} habilidades`;
+}
