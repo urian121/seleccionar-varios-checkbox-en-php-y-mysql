@@ -1,7 +1,3 @@
-import { miToast } from "./toast.js";
-import { limpiarCheckboxesAndRadios } from "./limpiar_checkbox_radios.js";
-import { actualizarTotalHabilidades } from "./actualizar_total_habilidades.js";
-
 document.addEventListener("DOMContentLoaded", function () {
   //Código para limpiar checkboxes y radios al cargar la página
   limpiarCheckboxesAndRadios();
@@ -31,6 +27,77 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+/**
+ * Función para limpiar los checkboxes y radios de la página.
+ */
+function limpiarCheckboxesAndRadios() {
+  let inputs = document.querySelectorAll(
+    "input[type='checkbox'], input[type='radio']"
+  );
+
+  inputs.forEach((input) => {
+    input.checked = false; // Deselecciona todos los checkboxes y radios
+  });
+
+  let checkboxes = document.querySelectorAll("input[type='checkbox']");
+  checkboxes.forEach((checkbox) => {
+    checkbox.disabled = true; // Deshabilita todos los checkboxes
+  });
+
+  document.querySelector("#seleccionarTodos").disabled = true;
+  console.log("Todos los checkboxes y radios han sido deseleccionados.");
+}
+
+/**
+ * Función para seleccionar o deseleccionar todos los checkboxes (Habilidades).
+ */
+function seleccionarTodos() {
+  let btn_seleccionarTodos = document.querySelector("#seleccionarTodos");
+  let id_dev_seleccionado = document.querySelector(
+    "input[type='radio']:checked"
+  ).value;
+  let checkboxes = document.querySelectorAll(
+    '#div_respuesta input[type="checkbox"]'
+  );
+
+  let todosSeleccionados = Array.from(checkboxes).every((chk) => chk.checked);
+  let habilidadesSeleccionadas = [];
+
+  checkboxes.forEach((chk) => {
+    chk.checked = !todosSeleccionados;
+
+    if (chk.checked) {
+      habilidadesSeleccionadas.push(chk.value);
+    }
+  });
+
+  // Cambiar texto del botón
+  btn_seleccionarTodos.textContent = todosSeleccionados
+    ? "Seleccionar Todos"
+    : "Deseleccionar Todos";
+
+  // Enviar los datos con fetch
+  fetch("procesar_habilidad.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      action: "desmarcar_marcar_todos",
+      id_habilidad: JSON.stringify(habilidadesSeleccionadas),
+      id_dev: id_dev_seleccionado,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Respuesta del servidor:", data);
+      actualizarTotalHabilidades(id_dev_seleccionado, data.total_habilidades);
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud:", error);
+    });
+
+  console.log("Habilidades seleccionadas:", habilidadesSeleccionadas);
+}
 
 /**
  *  Función para obtener las habilidades de un desarrollador específico.
@@ -69,9 +136,6 @@ function getHabilidadesDev(idDev) {
               .then((data) => {
                 console.log(data);
                 actualizarTotalHabilidades(idDev, data.total_habilidades);
-
-                // Mostrar mensaje de toast
-                miToast(data.mensaje, "success");
               })
               .catch((error) => {
                 console.error("Error al enviar la solicitud:", error);
@@ -83,4 +147,10 @@ function getHabilidadesDev(idDev) {
   } catch (error) {
     console.error("Error al procesar la solicitud:", error);
   }
+}
+
+function actualizarTotalHabilidades(idDev, totalHabilidades) {
+  document.querySelector(
+    `#total_habilidades_${idDev}`
+  ).textContent = `${totalHabilidades} habilidades`;
 }

@@ -17,10 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($ACTION)) {
 
             if ($result->num_rows > 0) {
                 $deleteResult = $conexion->query("DELETE FROM tbl_habilidades_dev WHERE id_dev='$id_dev' AND id_habilidad='$id_habilidad'");
-                $response['mensaje'] = $deleteResult ? "Habilidad eliminada" : "Error al eliminar la habilidad: " . $conexion->error;
+                $response['mensaje'] = $deleteResult ? "Habilidad eliminada correctamente" : "Error al eliminar la habilidad: " . $conexion->error;
             } else {
                 $insertResult = $conexion->query("INSERT INTO tbl_habilidades_dev (id_dev, id_habilidad) VALUES ('$id_dev', '$id_habilidad')");
-                $response['mensaje'] = $insertResult ? "Habilidad asignada" : "Error al asignar la habilidad: " . $conexion->error;
+                $response['mensaje'] = $insertResult ? "Habilidad asignada correctamente" : "Error al asignar la habilidad: " . $conexion->error;
             }
 
             // Llamar a la función para obtener el total actualizado de habilidades

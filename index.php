@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Procesar múltiple CheckBox seleccionados con PHP y MySQL</title>
+    <title>Procesar múltiple CheckBox seleccionados con JavaScript PHP y MySQL</title>
     <link rel="shortcut icon" href="https://www.urianviera.com/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -21,7 +21,7 @@
 
     <div class="container mt-5">
         <h1 class="text-center mb-5 mt-4 border-bottom">
-            Procesar múltiple CheckBox seleccionados con <span style="color: #6e57c1;"> PHP y MySQL</span>
+            Seleccionar y procesar múltiples CheckBox con <span style="color: #6e57c1;">JavaScript, PHP y MySQL</span>
         </h1>
         <div class="row justify-content-center mb-5">
             <div class="col-md-4">
@@ -47,7 +47,7 @@
             <div class="col-md-6 px-2">
                 <h4 class="text-center fw-bold mb-4 mt-5 mb-5">Habilidades
                     <span class="float-end">
-                        <button class="btn btn-primary btn-sm" id="seleccionarTodos" type="button" disabled onclick="seleccionarTodos()">
+                        <button class="btn btn-primary btn-sm" id="seleccionarTodos" type="button" disabled>
                             <i class="bi bi-check2-square"></i>
                             Seleccionar Todos
                         </button>
@@ -70,7 +70,9 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="assets/js/home.js"></script>
+    <script type="module" src="assets/js/home.js"></script>
+    <script type="module" src="assets/js/limpiar_checkbox_radios.js"></script>
+    <script type="module" src="assets/js/seleccionar_todos.js"></script>t
 </body>
 
 </html>
