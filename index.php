@@ -72,7 +72,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script type="module" src="assets/js/home.js"></script>
     <script type="module" src="assets/js/limpiar_checkbox_radios.js"></script>
-    <script type="module" src="assets/js/seleccionar_todos.js"></script>t
+    <script type="module" src="assets/js/seleccionar_todos.js"></script>
 </body>
 
 </html>
