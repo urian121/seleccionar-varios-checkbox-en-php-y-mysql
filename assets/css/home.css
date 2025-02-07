@@ -1,5 +1,41 @@
+body{
+    background-color:#09090a !important;
+    font-family: 'Poppins', sans-serif !important;
+    color: #fff !important;
+}
+.container{
+    background-color: #2c2c31;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+h1{
+    font-size: 50px;
+    font-weight: 900;
+}
+.list-group{
+    --bs-list-group-bg: #323233 !important;
+    --bs-list-group-border-color:#515457 !important;
+}
+.list-group-item{
+    color: #fff !important;
+}
 .dev-item.active {
-    background-color: #d1e7fd; 
-    color: #333;
-    border: 1px solid #ccc;
+    background-color: #09090a; 
+    color: #fff !important;
+    border: none;
+}
+
+input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
 }

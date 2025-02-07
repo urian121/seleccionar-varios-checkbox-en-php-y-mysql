@@ -11,31 +11,16 @@ if (!$habilidades_disponibles) {
     exit;
 }
 
-$idsHabilidadesDev = array_column($habilidades_dev, 'id_habilidad'); // Extrae solo los IDs de habilidades que tiene el dev
+$idsHabilidadesDev = array_column($habilidades_dev, 'id_habilidad'); // Extrae los IDs de habilidades del dev
 
-$counter = 0;
-foreach ($habilidades_disponibles as $habilidad_disponible) :
-    if ($counter % 3 === 0) : ?>
-        <ul class="list-group list-group-flush">
-        <?php endif; ?>
-
-        <li id="li_habilidad_<?= $habilidad_disponible['id_habilidad'] ?>" class="list-group-item">
-            <label for="habilidad_<?= $habilidad_disponible['id_habilidad'] ?>" style="cursor: pointer;">
-                <input class="custom_checkbox" type="checkbox" name="habilidades[]"
-                    id="habilidad_<?= $habilidad_disponible['id_habilidad'] ?>"
-                    value="<?= $habilidad_disponible['id_habilidad'] ?>"
-                    <?php if (in_array($habilidad_disponible['id_habilidad'], $idsHabilidadesDev)) echo 'checked'; ?> />
-                <?= $habilidad_disponible['skill'] ?>
-            </label>
-        </li>
-
-        <?php
-        $counter++;
-        if ($counter % 3 === 0) : ?>
-        </ul>
-    <?php endif;
-    endforeach;
-
-    if ($counter % 3 !== 0) : ?>
-    </ul>
-<?php endif; ?>
+foreach ($habilidades_disponibles as $habilidad) :
+?>
+    <label class="mb-3">
+        <input type="checkbox" name="habilidades[]" value="<?= $habilidad['id_habilidad']; ?>"
+            <?= in_array($habilidad['id_habilidad'], $idsHabilidadesDev) ? 'checked' : ''; ?>>
+        <?= $habilidad['skill']; ?>
+    </label>
+    <br>
+<?php
+endforeach;
+?>

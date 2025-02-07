@@ -13,35 +13,41 @@
     <?php
     require_once("config/settingBD.php");
     require_once("functions/functions.php");
-    $listDevs = getDevs($conexion);
-    $listKills = getSkills($conexion);
     $listDevsSkills = getDevsSkills($conexion);
+    $listKills = getSkills($conexion);
     ?>
 
     <div class="container mt-5">
-        <div class="row">
+        <h1 class="text-center mb-5 mt-4 border-bottom">
+            Procesar múltiple CheckBox seleccionados con <span style="color: #6e57c1;"> PHP y MySQL</span>
+        </h1>
+        <div class="row justify-content-center mb-5">
             <div class="col-md-4">
-                <h4 class="text-center fw-bold border-bottom mb-4">Seleccione un Dev</h4>
+                <h4 class="text-center fw-bold  mb-4 mt-5 mb-5">Lista de Devs 👨‍💻</h4>
+
                 <ul class="list-group list-group-flush" id="devList">
-                    <?php foreach ($listDevs as $index => $dev): ?>
+                    <?php
+                    foreach ($listDevsSkills as $dev): ?>
                         <li class="list-group-item dev-item" id="<?= $dev["id_dev"]; ?>" data-id="<?= $dev["id_dev"]; ?>">
                             <label for="<?= $dev["id_dev"]; ?>" class="d-flex justify-content-between align-items-center cursor-pointer">
                                 <span>
-                                    <input class="custom_radio" type="radio" name="dev" id="dev_<?= $dev["id_dev"]; ?>" value="<?= $dev['id_dev'] ?>" style="cursor: pointer;">
+                                    <input class="custom_radio" type="radio" name="dev" id="dev_<?= $dev["id_dev"]; ?>"
+                                        value="<?= $dev['id_dev'] ?>" style="cursor: pointer;">
                                     &nbsp; <?= $dev["name"]; ?>
                                 </span>
+                                <span class="badge bg-primary"><?= $dev["habilidades"]; ?> habilidades</span>
                             </label>
                         </li>
                     <?php endforeach; ?>
                 </ul>
             </div>
 
-            <div class="col-md-6">
-                <h4 class="text-center fw-bold border-bottom mb-4">Habilidades</h4>
+            <div class="col-md-6 px-2">
+                <h4 class="text-center fw-bold mb-4 mt-5 mb-5">Habilidades <span class="float-end"><button class="btn btn-primary btn-sm" id="seleccionarTodos" type="button" disabled onclick="seleccionarTodos()">Seleccionar Todos</button></span></h4>
                 <div class="form-group">
                     <div style="column-count: 3;" id="div_respuesta">
                         <?php foreach ($listKills as $skill): ?>
-                            <label>
+                            <label class="mb-3">
                                 <input type="checkbox" name="id_habilidad[]" value="<?php echo $skill['id_habilidad']; ?>">
                                 <?php echo $skill['skill']; ?>
                             </label>
