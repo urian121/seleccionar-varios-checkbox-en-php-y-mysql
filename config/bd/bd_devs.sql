@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `tbl_devs` (
   `id_dev` int NOT NULL,
   `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_devs`
@@ -53,7 +53,7 @@ INSERT INTO `tbl_devs` (`id_dev`, `name`) VALUES
 CREATE TABLE `tbl_habilidades` (
   `id_habilidad` int NOT NULL,
   `skill` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_habilidades`
@@ -92,7 +92,7 @@ CREATE TABLE `tbl_habilidades_dev` (
   `id_skill_dev` int NOT NULL,
   `id_dev` int NOT NULL,
   `id_habilidad` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_habilidades_dev`
