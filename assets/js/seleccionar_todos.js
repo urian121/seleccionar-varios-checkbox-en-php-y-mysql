@@ -7,6 +7,9 @@ import { actualizarTotalHabilidades } from "./actualizar_total_habilidades.js";
 let BtnseleccionarTodos = document.querySelector("#seleccionarTodos");
 BtnseleccionarTodos.addEventListener("click", seleccionarTodos);
 
+/**
+ * Función para seleccionar o deseleccionar todos los checkboxes (Habilidades).
+ */
 function seleccionarTodos() {
   let btn_seleccionarTodos = document.querySelector("#seleccionarTodos");
   let id_dev_seleccionado = document.querySelector(
@@ -16,6 +19,7 @@ function seleccionarTodos() {
     '#div_respuesta input[type="checkbox"]'
   );
 
+  // Verifica si todos los checkboxes están seleccionados para alternar su estado.
   let todosSeleccionados = Array.from(checkboxes).every((chk) => chk.checked);
   let habilidadesSeleccionadas = [];
 
@@ -36,6 +40,7 @@ function seleccionarTodos() {
   fetch("procesar_habilidad.php", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    // Convierte el objeto en una cadena de consulta codificada para enviarla en el body de la solicitud
     body: new URLSearchParams({
       action: "desmarcar_marcar_todos",
       id_habilidad: JSON.stringify(habilidadesSeleccionadas),
