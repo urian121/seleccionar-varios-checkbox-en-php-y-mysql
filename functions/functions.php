@@ -20,6 +20,10 @@ function getDevsSkills($conexion)
     }
     return $resultado->fetch_all(MYSQLI_ASSOC);  // Esto devolverá los resultados como un array asociativo
 }
+
+/**
+ * Función para obtener las habilidades de la base de datos
+ */
 function getSkills($conexion)
 {
     $sql = "SELECT 
