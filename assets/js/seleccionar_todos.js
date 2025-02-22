@@ -21,11 +21,14 @@ function seleccionarTodos() {
 
   // Verifica si todos los checkboxes están seleccionados para alternar su estado.
   let todosSeleccionados = Array.from(checkboxes).every((chk) => chk.checked);
-  let habilidadesSeleccionadas = [];
+  let habilidadesSeleccionadas = []; // Declarar array para almacenar las habilidades seleccionadas después del cambio de estado.
 
+  // Itera sobre los checkboxes para cambiar su estado y actualizar la lista de habilidades seleccionadas.
   checkboxes.forEach((chk) => {
+    // Invierte el estado de cada checkbox: si todos están marcados, los desmarca y viceversa.
     chk.checked = !todosSeleccionados;
 
+    // Agregar la habilidad seleccionada a la lista
     if (chk.checked) {
       habilidadesSeleccionadas.push(chk.value);
     }
@@ -50,6 +53,7 @@ function seleccionarTodos() {
     .then((response) => response.json())
     .then((data) => {
       console.log("Respuesta del servidor:", data);
+      // Actualizar el total de habilidades seleccionadas
       actualizarTotalHabilidades(id_dev_seleccionado, data.total_habilidades);
       
       // Mostrar la notificación
